@@ -1,0 +1,71 @@
+{
+  "type": "record",
+  "name": "TraceData",
+  "namespace": "com.benchmark.serdes.avro",
+  "fields": [
+    {"name": "command", "type": "string"},
+    {"name": "fab", "type": "string"},
+    {"name": "eqpId", "type": "string"},
+    {"name": "collectionInterval", "type": "double"},
+    {"name": "eventTime", "type": "string"},
+    {"name": "fdcChambId", "type": "string"},
+    {"name": "txid", "type": "string"},
+    {
+      "name": "parameterList",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "Parameter",
+          "fields": [
+            {"name": "name", "type": "string"},
+            {"name": "alias", "type": "string"},
+            {"name": "svid", "type": ["null", "string"], "default": null},
+            {"name": "paramValue", "type": "string"},
+            {"name": "target", "type": "string"},
+            {"name": "lsl", "type": "string"},
+            {"name": "usl", "type": "string"},
+            {"name": "lcl", "type": "string"},
+            {"name": "ucl", "type": "string"},
+            {"name": "faultCode", "type": "string"},
+            {"name": "specType", "type": "string"},
+            {"name": "comment", "type": ["null", "string"], "default": null},
+            {"name": "modelName", "type": "string"},
+            {"name": "specMId", "type": ["null", "string"], "default": null}
+          ]
+        }
+      }
+    },
+    {
+      "name": "context",
+      "type": {
+        "type": "record",
+        "name": "Context",
+        "fields": [
+          {"name": "batchId", "type": "string"},
+          {"name": "batchTyp", "type": "string"},
+          {"name": "slotNo", "type": "string"},
+          {"name": "lotId", "type": "string"},
+          {"name": "lotCd", "type": "string"},
+          {"name": "operId", "type": "string"},
+          {"name": "operDesc", "type": "string"},
+          {"name": "portNo", "type": "string"},
+          {"name": "mesRecipeId", "type": "string"},
+          {"name": "recipeId", "type": "string"},
+          {"name": "prodId", "type": "string"},
+          {"name": "reticleId", "type": "string"},
+          {"name": "batchLotListVal", "type": "string"},
+          {"name": "stepId", "type": "string"},
+          {"name": "stepNm", "type": "string"},
+          {"name": "substId", "type": "string"},
+          {"name": "statCd", "type": "string"},
+          {"name": "unitCd", "type": "string"},
+          {"name": "startStepId", "type": "string"},
+          {"name": "endStepId", "type": "string"},
+          {"name": "putId", "type": "string"},
+          {"name": "zone", "type": "string"}
+        ]
+      }
+    }
+  ]
+}
