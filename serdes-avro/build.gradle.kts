@@ -1,6 +1,6 @@
 plugins {
     java
-    id("com.github.davidmc24.gradle.plugin.avro")
+    id("io.github.martinsjavacode.avro-gradle-plugin") version "1.2.0"
 }
 
 dependencies {
@@ -8,19 +8,21 @@ dependencies {
 }
 
 avro {
-    isCreateSetters.set(true)
-    isCreateOptionalGetters.set(false)
-    isGettersReturnOptional.set(false)
-    isOptionalGettersForNullableFieldsOnly.set(false)
-    fieldVisibility.set("PRIVATE")
-    outputCharacterEncoding.set("UTF-8")
-    stringType.set("String")
+    sourceDir = "${rootProject.projectDir}/schemas/avro"
+    outputDir = "${project.layout.buildDirectory.get()}/generated-sources/avro"
+    fieldVisibility = "PRIVATE"
+    stringType = "String"
+    optionalGetters = false
 }
 
 sourceSets {
     main {
-        resources {
-            srcDir("${rootProject.projectDir}/schemas/avro")
+        java {
+            srcDir("${project.layout.buildDirectory.get()}/generated-sources/avro")
         }
     }
+}
+
+tasks.named("compileJava") {
+    dependsOn("generateAvroClasses")
 }
