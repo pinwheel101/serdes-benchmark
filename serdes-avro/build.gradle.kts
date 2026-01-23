@@ -1,6 +1,6 @@
 plugins {
     java
-    id("io.github.martinsjavacode.avro-gradle-plugin") version "1.2.0"
+    id("eu.eventloopsoftware.avro-gradle-plugin") version "0.0.2"
 }
 
 dependencies {
@@ -8,21 +8,20 @@ dependencies {
 }
 
 avro {
-    sourceDir = "${rootProject.projectDir}/schemas/avro"
-    outputDir = "${project.layout.buildDirectory.get()}/generated-sources/avro"
-    fieldVisibility = "PRIVATE"
-    stringType = "String"
-    optionalGetters = false
+    sourceDirectory.set("${rootProject.projectDir}/schemas/avro")
+    outputDirectory.set(layout.buildDirectory.dir("generated-sources/avro"))
+    fieldVisibility.set("PRIVATE")
+    stringType.set("String")
 }
 
 sourceSets {
     main {
         java {
-            srcDir("${project.layout.buildDirectory.get()}/generated-sources/avro")
+            srcDir(layout.buildDirectory.dir("generated-sources/avro"))
         }
     }
 }
 
 tasks.named("compileJava") {
-    dependsOn("generateAvroClasses")
+    dependsOn("avroGenerateJavaClasses")
 }
