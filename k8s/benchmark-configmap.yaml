@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: benchmark-config
+  namespace: benchmark
+data:
+  # Pure serialization benchmark (no Kafka required)
+  BENCHMARK_PURE: ".*PureSerializationBenchmark.*"
+
+  # Kafka benchmark (requires Kafka cluster)
+  BENCHMARK_KAFKA: ".*KafkaBenchmark.*"
+
+  # Kafka with Schema Registry benchmark (requires Kafka + Apicurio)
+  BENCHMARK_REGISTRY: ".*KafkaRegistryBenchmark.*"
+
+  # All benchmarks
+  BENCHMARK_ALL: ".*Benchmark.*"
+
+  # JMH settings
+  JMH_WARMUP_ITERATIONS: "3"
+  JMH_MEASUREMENT_ITERATIONS: "5"
+  JMH_FORKS: "2"

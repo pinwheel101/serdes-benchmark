@@ -1,0 +1,72 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: serdes-benchmark
+  namespace: benchmark
+  labels:
+    app: serdes-benchmark
+spec:
+  ttlSecondsAfterFinished: 3600
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app: serdes-benchmark
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: benchmark
+          image: serdes-benchmark:latest
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: "6Gi"
+              cpu: "2"
+            limits:
+              memory: "8Gi"
+              cpu: "4"
+          env:
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: "kafka-bootstrap.kafka.svc.cluster.local:9092"
+            - name: APICURIO_REGISTRY_URL
+              value: "http://apicurio-registry.apicurio.svc.cluster.local:8080/apis/registry/v3"
+            - name: JAVA_OPTS
+              value: "-Xms4g -Xmx4g -XX:+UseG1GC -XX:+AlwaysPreTouch"
+          args:
+            - "-wi"
+            - "3"
+            - "-i"
+            - "5"
+            - "-f"
+            - "2"
+            - "-rf"
+            - "json"
+            - "-rff"
+            - "/app/results/jmh-results.json"
+            - "-prof"
+            - "gc"
+            - ".*PureSerializationBenchmark.*"
+          volumeMounts:
+            - name: results
+              mountPath: /app/results
+      volumes:
+        - name: results
+          persistentVolumeClaim:
+            claimName: benchmark-results-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: benchmark-results-pvc
+  namespace: benchmark
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: benchmark
