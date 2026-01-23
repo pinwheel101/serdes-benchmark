@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package com.benchmark.serdes.proto;
+
+option java_package = "com.benchmark.serdes.proto";
+option java_outer_classname = "TraceDataProtos";
+option java_multiple_files = true;
+
+message TraceData {
+  string command = 1;
+  string fab = 2;
+  string eqp_id = 3;
+  double collection_interval = 4;
+  string event_time = 5;
+  string fdc_chamb_id = 6;
+  string txid = 7;
+  repeated Parameter parameter_list = 8;
+  Context context = 9;
+}
+
+message Parameter {
+  string name = 1;
+  string alias = 2;
+  optional string svid = 3;
+  string param_value = 4;
+  string target = 5;
+  string lsl = 6;
+  string usl = 7;
+  string lcl = 8;
+  string ucl = 9;
+  string fault_code = 10;
+  string spec_type = 11;
+  optional string comment = 12;
+  string model_name = 13;
+  optional string spec_m_id = 14;
+}
+
+message Context {
+  string batch_id = 1;
+  string batch_typ = 2;
+  string slot_no = 3;
+  string lot_id = 4;
+  string lot_cd = 5;
+  string oper_id = 6;
+  string oper_desc = 7;
+  string port_no = 8;
+  string mes_recipe_id = 9;
+  string recipe_id = 10;
+  string prod_id = 11;
+  string reticle_id = 12;
+  string batch_lot_list_val = 13;
+  string step_id = 14;
+  string step_nm = 15;
+  string subst_id = 16;
+  string stat_cd = 17;
+  string unit_cd = 18;
+  string start_step_id = 19;
+  string end_step_id = 20;
+  string put_id = 21;
+  string zone = 22;
+}

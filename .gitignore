@@ -1,0 +1,48 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+.vscode/
+
+# Compiled
+*.class
+*.jar
+*.war
+*.ear
+
+# Generated sources
+serdes-avro/src/main/java/
+serdes-protobuf/src/main/java/
+
+# Benchmark results
+results/*.json
+results/*.csv
+results/*.html
+!results/.gitkeep
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+.docker/
+
+# Kubernetes secrets
+k8s/*-secret.yaml
+
+# Environment
+.env
+.env.local
