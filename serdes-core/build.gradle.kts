@@ -21,9 +21,13 @@ dependencies {
     implementation("com.google.protobuf:protobuf-java:${property("protobufVersion")}")
 
     // Apicurio Registry SerDe
-    implementation("io.apicurio:apicurio-registry-serdes-avro-serde:${property("apicurioVersion")}")
-    implementation("io.apicurio:apicurio-registry-serdes-protobuf-serde:${property("apicurioVersion")}")
-    implementation("io.apicurio:apicurio-registry-serdes-jsonschema-serde:${property("apicurioVersion")}")
+    // implementation("io.apicurio:apicurio-registry-serdes-avro-serde:${property("apicurioVersion")}")
+    // implementation("io.apicurio:apicurio-registry-serdes-protobuf-serde:${property("apicurioVersion")}")
+    // implementation("io.apicurio:apicurio-registry-serdes-jsonschema-serde:${property("apicurioVersion")}")
+
+    implementation("io.apicurio:apicurio-registry-avro-serde-kafka:${property("apicurioVersion")}")
+    implementation("io.apicurio:apicurio-registry-protobuf-serde-kafka:${property("apicurioVersion")}")
+    implementation("io.apicurio:apicurio-registry-jsonschema-serde-kafka:${property("apicurioVersion")}")
 
     // Logging
     implementation("org.slf4j:slf4j-api:${property("slf4jVersion")}")

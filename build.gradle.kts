@@ -1,7 +1,7 @@
 plugins {
     java
     id("com.google.protobuf") version "0.9.4" apply false
-    id("com.github.davidmc24.gradle.plugin.avro") version "1.9.1" apply false
+    id("eu.eventloopsoftware.avro-gradle-plugin") version "0.0.2" apply false
     id("me.champeau.jmh") version "0.7.2" apply false
 }
 
