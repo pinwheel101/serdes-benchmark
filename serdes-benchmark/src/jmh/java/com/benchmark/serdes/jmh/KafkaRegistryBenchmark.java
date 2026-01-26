@@ -4,7 +4,7 @@ import com.benchmark.serdes.generator.PayloadSize;
 import com.benchmark.serdes.generator.TraceDataConverter;
 import com.benchmark.serdes.generator.TraceDataGenerator;
 import com.benchmark.serdes.model.TraceData;
-import io.apicurio.registry.serde.SerdeConfig;
+import io.apicurio.registry.serde.config.SerdeConfig;
 import io.apicurio.registry.serde.avro.AvroKafkaDeserializer;
 import io.apicurio.registry.serde.avro.AvroKafkaSerializer;
 import io.apicurio.registry.serde.protobuf.ProtobufKafkaDeserializer;

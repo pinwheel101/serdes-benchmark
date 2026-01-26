@@ -1,6 +1,6 @@
 plugins {
     java
-    id("com.github.davidmc24.gradle.plugin.avro")
+    id("eu.eventloopsoftware.avro-gradle-plugin")
 }
 
 dependencies {
@@ -8,13 +8,12 @@ dependencies {
 }
 
 avro {
-    isCreateSetters.set(true)
-    isCreateOptionalGetters.set(false)
-    isGettersReturnOptional.set(false)
-    isOptionalGettersForNullableFieldsOnly.set(false)
-    fieldVisibility.set("PRIVATE")
-    outputCharacterEncoding.set("UTF-8")
-    stringType.set("String")
+    sourceDirectory = "${rootProject.projectDir}/schemas/avro"
+    stringType = "String"
+}
+
+tasks.named<JavaCompile>("compileJava") {
+    source(tasks.named("avroGenerateJavaClasses"))
 }
 
 sourceSets {
