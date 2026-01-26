@@ -118,6 +118,25 @@ java -jar serdes-benchmark/build/libs/*-jmh.jar \
 
 Results are saved to `results/jmh-results.json` in JMH JSON format.
 
+리포트 모듈 요약:
+```
+serdes-benchmark/src/main/java/com/benchmark/serdes/report/
+├── JmhResult.java              # JSON 파싱 모델
+├── MarkdownTableBuilder.java   # 마크다운 테이블 빌더
+└── BenchmarkReportGenerator.java # 리포트 생성 메인 클래스
+```
+사용법:
+```
+# Gradle 태스크로 실행
+./gradlew :serdes-benchmark:generateReport
+```
+
+```
+# 또는 직접 실행
+./gradlew :serdes-benchmark:run --args="results/jmh-results.json
+results/benchmark-report.md"
+```
+
 ## License
 
 MIT
